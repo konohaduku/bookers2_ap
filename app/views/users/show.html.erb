@@ -3,13 +3,12 @@
 <h4>Title</h4>
 <h4>Opinion</h4>
 
-<% @users.each do |user| %>
+<% @book.each do |book| %>
   <div>
-    <%= link_to user_path(user.id) do %>
-      <%= image_tag @book.get_image %>
+    <%= link_to user_path(book.user_id) do %>
+      <%= image_tag book.user.get_profile_image(80,80) %>
     <% end %>
-    <p><%= link_to  user_path(user.id) do %>
-       <%= user.name %></p>
-     <% end %>
+    <p><%= link_to "#{book.title }", book_path(book.id) %></p>
+  
     <% end %>
     </div>

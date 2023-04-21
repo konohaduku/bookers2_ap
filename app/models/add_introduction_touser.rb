@@ -1,0 +1,2 @@
+class AddIntroductionTouser < ApplicationRecord
+end

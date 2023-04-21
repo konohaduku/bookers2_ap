@@ -1,19 +1,19 @@
-<%= render 'list', books: @books %>
+<%= render 'list', book: @book, user: @user %>
 <h1>Book detail</h1>
 <div>
-  <%= image_tag @book.get_image %>
+ <%= link_to book_path(@book.id) do %>
+      <%= image_tag @book.user.get_profile_image(80,80) %>
+    <% end %>
   
-  <p><!--%= link_to  user_path(user.id) do %-->
-  <%= @book.user.name %></p>
-  <!--% end %-->
+ <p><%= link_to "#{@book.user.name}", user_path(@user.id) %></p>
   
-  <p><%= link_to  book_path(@book.id) do %>
-  <%= @book.title %></p>
-  <% end %>
+  
+  <p><%= link_to "#{ @book.title }", book_path(@book.id)  %></p>
+  
   
   <p><%= @book.body %></p>
   <% if @book.user == current_user %>
   <%= link_to "Edit", edit_book_path(@book) %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
+    <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %>
   <% end %>
 </div>

@@ -3,7 +3,7 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new
     @users = User.all
-    @user = User.new
+    @user = current_user
   end
   
    def create
@@ -15,10 +15,10 @@ class BooksController < ApplicationController
 
   def show
      @books = Book.all
-     @book = Book.new
      @users = User.all
-    @user = User.new
     @book = Book.find(params[:id])
+    @user = @book.user
+   
     
   end
 
@@ -27,15 +27,23 @@ class BooksController < ApplicationController
   end
   
   def destroy
-    @book = book.find(params[:id])
-    book.destroy
+    @book = Book.find(params[:id])
+   @book.destroy
     redirect_to books_path
   end
   
   def update
-    @book = book.find(params[:id])
-    book.update(book_params)
+    @book = Book.find(params[:id])
+    @book.update(book_params)
     redirect_to book_path(@book.id)  
+  end
+  
+  def get_profile_image
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [100, 100]).processed
   end
 
   
