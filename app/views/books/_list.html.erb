@@ -8,16 +8,16 @@
   <tbody>
   <tr>
  <th>name</th>
-  <th><%= current_user.name %></th>
+  <th><%= user.name %></th>
   </tr>
   <tr>
   <th>introduction</th>
-  <th><%= current_user.introduction %></th>
+  <th><%= user.introduction %></th>
     </tr>
   </tbody>
   </table>
   <div class="row">
-  <%= link_to  edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block edit_user_98888" do %>
+  <%= link_to  edit_user_path(user), class:"btn btn-outline-secondary btn-block edit_user_98888" do %>
    <i class="fas fa-user-cog"></i>
    <% end %>
     </div>
