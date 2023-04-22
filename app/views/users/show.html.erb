@@ -1,14 +1,32 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">  
+  
+  <div class="col-md-3" >
 <%= render 'books/list', book: @book,user: @user %>
+</div>
+<div class="col-md-8 offset-md-1" >
 <h1>Books</h1>
-<h4>Title</h4>
-<h4>Opinion</h4>
+<table class="table table-striped">
+  <thead>
+  <tr>
+<th>Title</th>
+<th>Opinion</th>
+<th colspan="3"></th>
+ </tr>
+  </thead>
 
 <% @book.each do |book| %>
-  <div>
-    <%= link_to user_path(book.user_id) do %>
+  <tbody>
+    <tr>
+    <td><%= link_to user_path(book.user_id) do %>
       <%= image_tag book.user.get_profile_image(80,80) %>
+    <% end %></td>
+    <td><%= link_to "#{book.title }", book_path(book.id) %></td>
+    <td><%= book.body %></td>
     <% end %>
-    <p><%= link_to "#{book.title }", book_path(book.id) %></p>
-  
-    <% end %>
-    </div>
+    </tr>
+    </tbody>
+    </table>
+ </div>  
+</div>
+</div>
